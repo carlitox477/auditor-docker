@@ -19,5 +19,6 @@ echo "Executing all scripts..."
 ~/scripts/py_developer_setup.sh
 ~/scripts/embark.sh
 ~/scripts/echidna_installer.sh
+~/scripts/aderyn_installer.sh
 
 echo "All scripts executed successfully!"

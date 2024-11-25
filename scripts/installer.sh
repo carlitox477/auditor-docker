@@ -18,6 +18,7 @@
 # "13" "Install Embark" \
 # "14" "Install Python Developer Tools" \
 # "15" "Install VS Code Audit Extensions" \
+# "16" "Install Aderyn static analyzer" \
 
 ##
 
@@ -46,6 +47,7 @@ display_help() {
     echo "  13 Install Embark"
     echo "  14 Install Python Developer Tools"
     echo "  15 Install VS Code Audit Extensions"
+    echo "  16 Install Aderyn static analyzer"
     exit 0
 }
 
@@ -121,7 +123,7 @@ CIRCOM_OPTION=$(create_menu_option "circom" "Install Circom")
 EMBARK_OPTION="Install Embark" # Assuming Embark has no command line tool to check
 PYTHON_DEV_OPTION=$(create_menu_option "vyper" "Install Python Developer Tools")
 VS_CODE_AUDIT_EXTENSIONS_OPTION="Install VS Code Audit Extensions" # Assuming no check needed
-
+ADERYN_OPTION=$(create_menu_option "aderyn" "Install Aderyn static analyzer")
 
 while true; do
     exec 3>&1
@@ -146,6 +148,7 @@ while true; do
         "13" "$EMBARK_OPTION" \
         "14" "$PYTHON_DEV_OPTION" \
         "15" "$VS_CODE_AUDIT_EXTENSIONS_OPTION" \
+        "16" "$ADERYN_OPTION" \
         2>&1 1>&3)
     exit_code=$?
     exec 3>&-
@@ -165,6 +168,7 @@ while true; do
         0)
             clear
             echo "Installation canceled."
+            eval source ~/.bashrc
             exit
         ;;
         1)
@@ -240,6 +244,11 @@ while true; do
         15)
             run_with_progress "/home/whitehat/scripts/vscode_audit_extensions.sh" "VS Code Audit Extensions"
             result="vscode_audit_extensions.sh installed successfully!"
+            display_result "Result"
+        ;;
+        16)
+            run_with_progress "/home/whitehat/scripts/aderyn_installer.sh" "Aderyn static analyzer"
+            result="aderyn_installer.sh installed successfully!"
             display_result "Result"
         ;;
     esac
