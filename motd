@@ -19,7 +19,7 @@ https://github.com/Deivitto/auditor-docker/
 #                                                
 
 Languages installed:
-- Python3.9, Solidity, Rust, Julia
+- Python3.9, Solidity, Rust, Julia, go
 Languages in the installer:
 - Vyper, Noir, Circom
 

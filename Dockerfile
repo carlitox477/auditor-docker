@@ -113,6 +113,11 @@ RUN . "$NVM_DIR/nvm.sh" && \
 # Install cargo, rust. Foundry and heimdall are now installed by multistage installation and copied at the end
 RUN curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 
 
+# Install go
+RUN sudo add-apt-repository ppa:longsleep/golang-backports
+RUN sudo apt-get update
+RUN sudo apt-get install -y golang-go
+
 # Create the scripts directory
 RUN mkdir -p /home/whitehat/scripts
 # Create the templates directory
