@@ -20,6 +20,7 @@
 # "15" "Install VS Code Audit Extensions" \
 # "16" "Install Aderyn static analyzer" \
 # "17" "Install Gambit" \
+# "18" "Install Kontrol" \
 
 ##
 
@@ -50,6 +51,7 @@ display_help() {
     echo "  15 Install VS Code Audit Extensions"
     echo "  16 Install Aderyn static analyzer"
     echo "  17 Install Gambit (mutant generator)"
+    echo "  18 Install Kontrol"
     exit 0
 }
 
@@ -127,6 +129,7 @@ PYTHON_DEV_OPTION=$(create_menu_option "vyper" "Install Python Developer Tools")
 VS_CODE_AUDIT_EXTENSIONS_OPTION="Install VS Code Audit Extensions" # Assuming no check needed
 ADERYN_OPTION=$(create_menu_option "aderyn" "Install Aderyn static analyzer")
 GAMBIT_OPTION=$(create_menu_option "gambit" "Install Gambit (Certora mutant generator)")
+KONTROL_OPTION=$(create_menu_option "kontrol" "Install Kontrol")
 
 while true; do
     exec 3>&1
@@ -153,6 +156,7 @@ while true; do
         "15" "$VS_CODE_AUDIT_EXTENSIONS_OPTION" \
         "16" "$ADERYN_OPTION" \
         "17" "$GAMBIT_OPTION" \
+        "18" "$KONTROL_OPTION" \
         2>&1 1>&3)
     exit_code=$?
     exec 3>&-
@@ -258,6 +262,11 @@ while true; do
         17)
             run_with_progress "/home/whitehat/scripts/gambit_installer.sh" "Aderyn static analyzer"
             result="gambit_installer.sh installed successfully!"
+            display_result "Result"
+        ;;
+        18)
+            run_with_progress "/home/whitehat/scripts/kontrol_installer.sh" "Kontrol"
+            result="kontrol_installer.sh installed successfully!"
             display_result "Result"
         ;;
     esac
