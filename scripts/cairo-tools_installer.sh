@@ -19,6 +19,9 @@ asdf plugin add starknet-foundry
 asdf install starknet-foundry latest
 asdf global starknet-foundry latest
 
+# Install Sierra
+curl -L https://raw.githubusercontent.com/software-mansion/universal-sierra-compiler/master/scripts/install.sh | sh
+
 # Include cairo extensions
 code --install-extension starkware.cairo1
 code --install-extension cairo*.vsix
