@@ -243,3 +243,6 @@ For general information, go to [Troubleshooting](https://github.com/Deivitto/aud
 - [`code` not working](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting#code-not-working)
 - [`Mac OS` Failed on building](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting#mac-os-failed-on-building)
 - [`solc-select` not working on MacOS](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting/_edit#mac-os-not-working-with-solc-select)
+
+# Devcontainer extension use
+After building the image you can reuse it using [VS-code Devcontainer extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) to isolate every project. After installing the extension simply copy folder `devcontainer` and change attribute `name` value for the name of your project. Then open command pallet (`Ctrl + Shift + P`) and use `Dev Container: Rebuild and reopen in container` to open it for the first time, then you should just use `Dev Container: Reopen in container`
