@@ -32,7 +32,8 @@
           "gimenete.github-linker",
           "tkrkt.linenote",
           "eg2.vscode-npm-script",
-          "ackeeblockchain.tools-for-solidity"
+          "ackeeblockchain.tools-for-solidity",
+          "be5invis.toml"
         ],
         "settings": {
           "terminal.integrated.defaultProfile.linux": "bash",
