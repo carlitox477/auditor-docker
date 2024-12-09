@@ -174,6 +174,14 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1
 RUN curl https://bootstrap.pypa.io/get-pip.py | python3.9 && \
     update-alternatives --install /usr/bin/pip pip /usr/local/bin/pip3.9 1
 
+# Install asdf
+RUN    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1 && \
+       echo >> ~/.bashrc && \
+       echo '#asdf install' >> ~/.bashrc && \
+       echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc && \
+       echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc && \
+       chown -R whitehat:whitehat /home/whitehat/.asdf/ 
+
 USER whitehat
 
 # Link scripts to ~/.local/bin for global access
@@ -181,8 +189,7 @@ RUN ln -s ~/scripts/certora_key_setup.sh ~/.local/bin/certoraKey && \
     ln -s ~/scripts/solc_docs.sh ~/.local/bin/solc-docs && \
     ln -s ~/scripts/issue_creator.sh ~/.local/bin/issue && \
     ln -s ~/scripts/update_scripts.sh ~/.local/bin/add2-update && \
-    ln -s ~/.local/bin/add2lbox ~/.local/bin/add2 
-    
+    ln -s ~/.local/bin/add2lbox ~/.local/bin/add2
 
 # Setup user environment configurations to .bashrc. This allows `code` to be always available in case of being using vscode
 # 1 - If exists. 2 - Get latest vscode version. 3 - Create symbolic link to latest. 4 - Create symbolic link to code itself.
@@ -204,6 +211,7 @@ COPY --from=builder /root/.foundry/bin/* /home/whitehat/.foundry/bin/
 USER root
 RUN chown -R whitehat:whitehat /home/whitehat/.bifrost/ /home/whitehat/.foundry/ && \
     chmod -R 755 /home/whitehat/.bifrost/ /home/whitehat/.foundry/
+
 USER whitehat
 
 # ENTRYPOINT ["/bin/bash"] is used to set the default command for the container to start a new Bash shell.
