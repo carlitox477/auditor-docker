@@ -7,12 +7,13 @@ ln -sf $HOME/.starkli/bin/starkliup ~/.local/bin/starkliup
 starkliup
 ln -sf $HOME/.starkli/bin/starkli ~/.local/bin/starkli
 
-
 # Instal scarb
 asdf plugin add scarb
 asdf install scarb latest
 asdf global scarb latest
 
+# Install snfoundryup
+curl -L https://raw.githubusercontent.com/foundry-rs/starknet-foundry/master/scripts/install.sh | sh
 
 # Install starknet foundry
 asdf plugin add starknet-foundry
@@ -22,6 +23,4 @@ asdf global starknet-foundry latest
 # Install Sierra
 curl -L https://raw.githubusercontent.com/software-mansion/universal-sierra-compiler/master/scripts/install.sh | sh
 
-# Include cairo extensions
-code --install-extension starkware.cairo1
-code --install-extension cairo*.vsix
+source $HOME/.bashrc
