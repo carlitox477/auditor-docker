@@ -18,6 +18,10 @@ RUN curl -L http://get.heimdall.rs | bash && \
     . /root/.cargo/env && \
     /root/.bifrost/bin/bifrost
 
+
+# Install jq
+RUN apt-get install jq
+
 # Now build the real docker image
 FROM ubuntu:jammy AS audit-toolbox
 
