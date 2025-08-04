@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.3
 # First stage for some cargo packages
 # --- BUILDER STAGE ---
-FROM ubuntu:jammy as builder
+FROM ubuntu:24.04 as builder
 
 # Install necessary tools and dependencies.
 RUN apt-get update && apt-get install -y curl git build-essential pkg-config libssl-dev && rm -rf /var/lib/apt/lists/*
@@ -19,11 +19,8 @@ RUN curl -L http://get.heimdall.rs | bash && \
     /root/.bifrost/bin/bifrost
 
 
-# Install jq
-RUN apt-get install jq
-
 # Now build the real docker image
-FROM ubuntu:jammy AS audit-toolbox
+FROM ubuntu:24.04 AS audit-toolbox
 
 LABEL org.opencontainers.image.authors="Deivitto"
 LABEL org.opencontainers.image.description="Audit Toolbox for Ethereum Smart Contracts"
@@ -59,6 +56,9 @@ RUN apt-get update && \
     libssl-dev \
     pkg-config && \
     rm -rf /var/lib/apt/lists/*
+
+# Install jq
+RUN apt-get update && apt-get -y install jq
 
 # Add Ethereum and Yices PPA repositories and install packages
 RUN add-apt-repository -y ppa:ethereum/ethereum && \
@@ -175,8 +175,7 @@ RUN echo -e '\ncat /etc/motd\n' >> /etc/bash.bashrc
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1
 
 # Install pip for Python 3.9 and set it as the default
-RUN curl https://bootstrap.pypa.io/get-pip.py | python3.9 && \
-    update-alternatives --install /usr/bin/pip pip /usr/local/bin/pip3.9 1
+# RUN curl https://bootstrap.pypa.io/get-pip.py | python3.9 | update-alternatives --install /usr/bin/pip pip /usr/local/bin/pip3.9 1
 
 USER whitehat
 
